@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Framework">
+      <UniqueIdentifier>{b2af03ac-c030-462b-a15a-ec078c03ea1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{7c1664a1-3649-484a-9e5f-d57b25758904}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ScreenObejct">
+      <UniqueIdentifier>{ed114542-30f4-4e8b-90ca-d3a0cfcc0091}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Dynamic">
+      <UniqueIdentifier>{38f35f57-6b15-457d-8625-45fc98059835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Static">
+      <UniqueIdentifier>{385ce668-b1ae-46ea-a95d-953e440597a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\BaseObject">
+      <UniqueIdentifier>{dfcfa434-88ba-48b0-845b-605f9eab561b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Camera">
+      <UniqueIdentifier>{ace55da4-0309-4aee-a0f2-6b39543090b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Collision">
+      <UniqueIdentifier>{60a1d88c-58ff-44b1-83a2-db5096fb070f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\GameTime">
+      <UniqueIdentifier>{f7cc9d61-2cba-4de6-b640-d0815307e16a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Global">
+      <UniqueIdentifier>{8e725154-1276-4370-a09d-806f0b5cb27d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Graphic">
+      <UniqueIdentifier>{576f93be-2cf1-4b37-a10d-fc24bb202a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Input">
+      <UniqueIdentifier>{a0bbc18c-c998-44d7-97a1-0863555c7151}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\QuadTree">
+      <UniqueIdentifier>{a29628b8-3ac3-41d5-a0ce-29ccb13548fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\ResourceManager">
+      <UniqueIdentifier>{b10d6257-3592-4bc8-bd9a-c45e0bc97c7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\ScreenManager">
+      <UniqueIdentifier>{26e4c078-9d07-403a-8ddf-028ad883f163}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\Windows">
+      <UniqueIdentifier>{fa2f5946-2f50-41d4-8e97-ebcae589310a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameApp.cpp" />
+    <ClCompile Include="WinMain.cpp" />
+    <ClCompile Include="PlayScreen.cpp">
+      <Filter>ScreenObejct</Filter>
+    </ClCompile>
+    <ClCompile Include="Mario.cpp">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Framework\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Screen.cpp">
+      <Filter>Framework\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Sprite.cpp">
+      <Filter>Framework\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Framework\BaseObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Collision.cpp">
+      <Filter>Framework\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTime.cpp">
+      <Filter>Framework\GameTime</Filter>
+    </ClCompile>
+    <ClCompile Include="DSUtil.cpp">
+      <Filter>Framework\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Trace.cpp">
+      <Filter>Framework\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic.cpp">
+      <Filter>Framework\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="Input.cpp">
+      <Filter>Framework\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowApp.cpp">
+      <Filter>Framework\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenManager.cpp">
+      <Filter>Framework\ScreenManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Framework\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="QuadNode.cpp">
+      <Filter>Framework\QuadTree</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameApp.h" />
+    <ClInclude Include="PlayScreen.h">
+      <Filter>ScreenObejct</Filter>
+    </ClInclude>
+    <ClInclude Include="Mario.h">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Framework\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Screen.h">
+      <Filter>Framework\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Framework\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Framework\BaseObject</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Collision.h">
+      <Filter>Framework\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTime.h">
+      <Filter>Framework\GameTime</Filter>
+    </ClInclude>
+    <ClInclude Include="DSUtil.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Trace.h">
+      <Filter>Framework\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic.h">
+      <Filter>Framework\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Framework\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowApp.h">
+      <Filter>Framework\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenManager.h">
+      <Filter>Framework\ScreenManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Framework\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadNode.h">
+      <Filter>Framework\QuadTree</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
