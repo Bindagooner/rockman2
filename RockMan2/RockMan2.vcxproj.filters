@@ -60,9 +60,6 @@
     <ClCompile Include="PlayScreen.cpp">
       <Filter>ScreenObejct</Filter>
     </ClCompile>
-    <ClCompile Include="Mario.cpp">
-      <Filter>GameObject\Dynamic</Filter>
-    </ClCompile>
     <ClCompile Include="GameObject.cpp">
       <Filter>Framework\BaseObject</Filter>
     </ClCompile>
@@ -108,14 +105,14 @@
     <ClCompile Include="QuadNode.cpp">
       <Filter>Framework\QuadTree</Filter>
     </ClCompile>
+    <ClCompile Include="Rockman.cpp">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h" />
     <ClInclude Include="PlayScreen.h">
       <Filter>ScreenObejct</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>GameObject\Dynamic</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Framework\BaseObject</Filter>
@@ -164,6 +161,9 @@
     </ClInclude>
     <ClInclude Include="QuadNode.h">
       <Filter>Framework\QuadTree</Filter>
+    </ClInclude>
+    <ClInclude Include="Rockman.h">
+      <Filter>GameObject\Dynamic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

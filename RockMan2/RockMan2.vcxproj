@@ -76,7 +76,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="Mario.cpp" />
+    <ClCompile Include="Rockman.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="QuadNode.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
@@ -98,7 +98,7 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Mario.h" />
+    <ClInclude Include="Rockman.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="QuadNode.h" />
     <ClInclude Include="ResourceManager.h" />
