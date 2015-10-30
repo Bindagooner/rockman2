@@ -3,8 +3,8 @@
 
 CPlayScreen::CPlayScreen()
 {
-	_mario = new CMario();
-	_mario->init();
+	_rockman = new CRockman();
+	_rockman->init();
 }
 
 
@@ -24,7 +24,7 @@ void CPlayScreen::update(CGameTime* gametime)
 
 void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
 {
-	_mario->render(gametime, graphic);
+	_rockman->render(gametime, graphic);
 }
 
 void CPlayScreen::loadMap()

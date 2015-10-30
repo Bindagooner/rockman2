@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 #include <cmath>
-#include "Mario.h"
+#include "Rockman.h"
 
 class CPlayScreen : public CScreen
 {
@@ -17,7 +17,7 @@ private:
 
 	void loadMap();
 
-	CMario* _mario;
+	CRockman* _rockman;
 	
 public:
 	void updateInput(CInput* input) override;
