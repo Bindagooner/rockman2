@@ -12,8 +12,8 @@ CRockman::~CRockman()
 
 int CRockman::init()
 {
-	_sprite = CResourceManager::getSprite(ID_SPRITE_MARIO_SMALL);
-	_position = Vector2(00, 00);
+	_sprite = CResourceManager::getSprite(ID_ROCKMAN_STAND);
+	_position = Vector2(0, 0);
 	return 1;
 }
 

@@ -25,7 +25,7 @@ int CResourceManager::init(HWND hwnd)
 #pragma endregion
 
 #pragma region Add Sprite
-	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_MARIO_SMALL, new CSprite("Resources/Image/PlayNho.png", 2, 6, 12, 600, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_ROCKMAN_STAND, new CSprite("Resources//Sprites//Rockman//rockman_stand.png", 1, 2, 2, 600, D3DCOLOR_XRGB(0, 102, 102))));
 #pragma endregion
 
 	return 1;

@@ -41,16 +41,16 @@ typedef D3DCOLOR				Color;
 typedef RECT					Rect;
 
 #define IS_FULL_SCREEN			0
-#define GAME_TITLE				L"MARIO"
-#define SCREEN_WIDTH			800
-#define SCREEN_HEIGHT			600
+#define GAME_TITLE				L"Rockman"
+#define SCREEN_WIDTH			256
+#define SCREEN_HEIGHT			224
 #define KEYBOARD_BUFFER_SIZE	1024
 #define FRAME_PER_SECOND		60
 #define FONT_SIZE				12
 #define FONT_FAMILY				L"Game Font"
 
 // ID TYPE SPRITE
-// ID MARIO
-#define	ID_SPRITE_MARIO_SMALL 100
+// ID ROCK MAN
+#define	ID_ROCKMAN_STAND 100
 
 #endif
