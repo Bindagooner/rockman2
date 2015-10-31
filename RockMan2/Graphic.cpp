@@ -193,6 +193,7 @@ void CGraphic::draw(Texture texture, Rect destinationRectangle, Vector2 position
 	// đặt lại ma trận ban đầu
 	_spriteHandler->SetTransform(&oldMatrix);
 }
+
 void CGraphic::draw(Texture texture, Rect boundingRectangle, bool isdrawAtCenter, Vector2 scale, SpriteEffects effect){
 	Rect destinationRectangle;
 	destinationRectangle.left = 0;
@@ -215,6 +216,7 @@ void CGraphic::draw(Texture texture, Rect destinationRectangle, Vector2 position
 {
 	draw(texture, destinationRectangle, position, true, scale, SpriteEffects::NONE);
 }
+
 void CGraphic::drawString(string text, Vector2 position, Color color, bool isdrawAtCenter){
 
 	Rect destRect;
@@ -225,6 +227,7 @@ void CGraphic::drawString(string text, Vector2 position, Color color, bool isdra
 
 	drawString(text, destRect, color, Vector2(1, 1), isdrawAtCenter);
 }
+
 void CGraphic::drawString(string text, Rect boundingRectangle, Color color, Vector2 scale, bool isdrawAtCenter){
 
 	// Nếu có camera thì chuyển vị theo camera
