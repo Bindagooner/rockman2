@@ -45,7 +45,7 @@ public:
 	/// </summary>
 	/// <param name="pos">The position.</param>
 	/// <returns> D3DXVECTOR2 </returns>
-	D3DXVECTOR2 transform(D3DXVECTOR2 pos);	
+	Vector2 transform(Vector2 pos);
 	/// <summary>
 	/// Gets the viewport.
 	/// </summary>
