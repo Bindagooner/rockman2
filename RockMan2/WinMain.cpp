@@ -19,7 +19,7 @@
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
 	CGameApp* game = new CGameApp(hInstance);
-
+	//aaaaaaaaaaaaaaaa
 	game->Run();
 	return 0;
 }
