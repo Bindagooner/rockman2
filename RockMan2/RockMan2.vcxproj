@@ -69,6 +69,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraPath.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="DSUtil.cpp" />
     <ClCompile Include="GameApp.cpp" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="CameraPath.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="DSUtil.h" />
     <ClInclude Include="GameApp.h" />

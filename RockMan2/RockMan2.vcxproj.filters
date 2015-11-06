@@ -108,6 +108,9 @@
     <ClCompile Include="Rockman.cpp">
       <Filter>GameObject\Dynamic</Filter>
     </ClCompile>
+    <ClCompile Include="CameraPath.cpp">
+      <Filter>Framework\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h" />
@@ -164,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="Rockman.h">
       <Filter>GameObject\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraPath.h">
+      <Filter>Framework\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
