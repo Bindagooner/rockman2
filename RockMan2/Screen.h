@@ -12,6 +12,10 @@
 #include "Graphic.h"
 #include "Input.h"
 #include "Camera.h"
+#include "CameraPath.h"
+#include "DSUtil.h"
+#include "Graphic.h"
+#include "Input.h"
 
 //-----------------------------------------------------------------------------
 // Lớp CScreen là đối tượng căn bản cho mọi đối tượng màn hình
@@ -49,7 +53,7 @@ public:
 
 protected:
 	CCamera*		_camera;		// Đối tượng camera dùng để transform các tọa độ và di chuyển màn hình game
-//	CCameraPath*	_cameraPath;
+	CCameraPath*	_cameraPath;
 	bool			_isFinished;	// Biến kiểm tra đã kết thúc màn hình chưa
 	CScreen*		_nextScreen;	// Màn hình kế tiếp
 	int				_typeID;		// ID của màn hình

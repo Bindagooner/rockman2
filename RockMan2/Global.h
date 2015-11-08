@@ -1,5 +1,5 @@
-//-----------------------------------------------------------------------------
-// File: CGrphics.h
+﻿//-----------------------------------------------------------------------------
+// File: CGlobal.h
 //
 #pragma once
 #ifndef _GLOBAL_
@@ -48,9 +48,35 @@ typedef RECT					Rect;
 #define FRAME_PER_SECOND		60
 #define FONT_SIZE				12
 #define FONT_FAMILY				L"Game Font"
+#define TILE_SIZE               32
+
+/*
+ LEVEL MÀN CHƠI
+*/
+
+#define ID_LEVEL_CUT 1
+#define ID_LEVEL_GUTS 2
+#define ID_LEVEL_BOOM 3
+
+#define MAP_IMAGE_BOOM_MAN		L"Resources//Maps//boom_man_stage.bmp"
+#define MAP_IMAGE_CUT_MAN		L"Resources//Maps//cut_man_stage.bmp"
+#define MAP_IMAGE_GUTS_MAN		L"Resources//Maps//guts_man_stage.bmp"
+#define MAP_DATA_BOOM_MAN		L"Resources//Maps//boom_man_stage.txt"
+#define MAP_DATA_CUT_MAN		L"Resources//Maps//cut_man_stage.txt"
+#define MAP_DATA_GUTS_MAN		L"Resources//Maps//guts_man_stage.txt"
+
+
+/*
+	ID SCREEN
+*/
+
+#define ID_SCREEN_PLAY 3009
 
 // ID TYPE SPRITE
 // ID ROCK MAN
 #define	ID_ROCKMAN_STAND 100
+
+// OTHER
+#define ID_FALLING_POINT 341
 
 #endif

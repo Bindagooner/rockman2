@@ -54,3 +54,13 @@ CDynamicObject::~CDynamicObject()
 {
 
 }
+
+CStaticObject::CStaticObject() : CGameObject()
+{
+
+}
+
+CStaticObject::~CStaticObject()
+{
+
+}

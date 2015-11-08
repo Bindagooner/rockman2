@@ -23,7 +23,7 @@ private:
 public:
 	int _timeFrameDefault;
 	CSprite();
-	CSprite(char* pNamePath, int countRow, int countColumn, int countFrame, int timeframe, Color color);
+	CSprite(wchar_t* pNamePath, int countRow, int countColumn, int countFrame, int timeframe, Color color);
 	~CSprite();
 	void setIndex(int index);
 	int getIndex();

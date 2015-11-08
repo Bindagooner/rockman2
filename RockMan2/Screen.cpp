@@ -1,12 +1,10 @@
 #include "Screen.h"
-#include "DSUtil.h"
-#include "Graphic.h"
-#include "Input.h"
+
 
 CScreen::CScreen(){
 	_isFinished = false;
 	_camera = new CCamera();
-//	_cameraPath = new CCameraPath();
+	_cameraPath = new CCameraPath();
 	_nextScreen = NULL;
 }
 

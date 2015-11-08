@@ -111,6 +111,15 @@
     <ClCompile Include="CameraPath.cpp">
       <Filter>Framework\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="GameInfo.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneInfo.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>GameObject\Static</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h" />
@@ -170,6 +179,15 @@
     </ClInclude>
     <ClInclude Include="CameraPath.h">
       <Filter>Framework\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInfo.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneInfo.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>GameObject\Static</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

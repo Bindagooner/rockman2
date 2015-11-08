@@ -4,7 +4,7 @@ CSprite::CSprite()
 {
 
 }
-CSprite::CSprite(char* pNamePath, int countRow, int countColumn, int countFrame, int timeFrame, Color color) :CTexture(pNamePath, color)
+CSprite::CSprite(wchar_t* pNamePath, int countRow, int countColumn, int countFrame, int timeFrame, Color color) :CTexture(pNamePath, color)
 {
 	this->_countColumn = countColumn;
 	this->_countFrame = countFrame;
