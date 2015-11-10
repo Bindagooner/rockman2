@@ -151,13 +151,14 @@ void CGraphic::draw(Texture texture, Rect destinationRectangle, Vector2 position
 		center.z = 0;
 	}
 
+	Vector3 positiondraw;
 	// Nếu có set camera thì transform theo camera
 	if (_camera != NULL){
-		_camera->transform(position); // _camera->transform(&position);
+		_camera->transform(&position); // _camera->transform(&position);
 	}
 
 	// đặt lại vị trí tương ứng giá trị scale
-	Vector3 positiondraw;
+	
 	positiondraw.x = position.x / scale.x;
 	positiondraw.y = position.y / scale.y;
 	positiondraw.z = 0;
@@ -237,8 +238,7 @@ void CGraphic::drawString(string text, Rect boundingRectangle, Color color, Vect
 		long width = boundingRectangle.right - boundingRectangle.left;
 		long height = boundingRectangle.bottom - boundingRectangle.top;
 
-//		_camera->transform(&drawPos);
-		_camera->transform(drawPos);
+		_camera->transform(&drawPos);
 		boundingRectangle.left = drawPos.x;
 		boundingRectangle.top = drawPos.y;
 		boundingRectangle.right = boundingRectangle.left + width;

@@ -13,7 +13,7 @@ CRockman::~CRockman()
 int CRockman::init()
 {
 	_sprite = CResourceManager::getSprite(ID_ROCKMAN_STAND);
-	_position = Vector2(0, 0);
+	_position = Vector2(100, 100);
 	return 1;
 }
 

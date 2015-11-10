@@ -30,11 +30,12 @@ void CCamera::setCamPosition(D3DXVECTOR2 pos, bool isFollow)
 	_matrixTransform._42 = _camPosition.y;
 }
 
-D3DXVECTOR2 CCamera::transform(D3DXVECTOR2 pos)
+void CCamera::transform(D3DXVECTOR2 *pos)
 {
 	D3DXVECTOR4 result;	
-	D3DXVec3Transform(&result, &D3DXVECTOR3(pos.x, pos.y, 0.0f), &_matrixTransform);
-	return D3DXVECTOR2(static_cast<int>(result.x), static_cast<int>(result.y));
+	D3DXVec3Transform(&result, &D3DXVECTOR3(pos->x, pos->y, 0.0f), &_matrixTransform);
+	pos->x = floor(result.x);
+	pos->y = floor(result.y);
 }
 
 D3DXVECTOR2 CCamera::getCameraPosition()

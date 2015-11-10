@@ -28,6 +28,7 @@ void CPlayScreen::update(CGameTime* gametime)
 void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
 {
 	graphic->beginDraw(_camera);
+
 	renderBackground(graphic, _camera->getViewport());
 	_rockman->render(gametime, graphic);
 	graphic->endDraw();
