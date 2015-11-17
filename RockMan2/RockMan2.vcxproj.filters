@@ -120,6 +120,9 @@
     <ClCompile Include="Block.cpp">
       <Filter>GameObject\Static</Filter>
     </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>GameObject\Static</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h" />
@@ -187,6 +190,9 @@
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Block.h">
+      <Filter>GameObject\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Rock.h">
       <Filter>GameObject\Static</Filter>
     </ClInclude>
   </ItemGroup>

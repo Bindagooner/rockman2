@@ -79,6 +79,7 @@
     <ClCompile Include="GameTime.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Rockman.cpp" />
     <ClCompile Include="PlayScreen.cpp" />
     <ClCompile Include="QuadNode.cpp" />
@@ -105,6 +106,7 @@
     <ClInclude Include="Global.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="Rockman.h" />
     <ClInclude Include="PlayScreen.h" />
     <ClInclude Include="QuadNode.h" />

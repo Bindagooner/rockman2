@@ -10,6 +10,7 @@
 #include "QuadNode.h"
 #include "SceneInfo.h"
 #include "Block.h"
+#include "Rock.h"
 
 #include <map>
 #include <vector>

@@ -78,5 +78,6 @@ typedef RECT					Rect;
 
 // OTHER
 #define ID_FALLING_POINT 341
+#define ID_ROCK          29
 
 #endif

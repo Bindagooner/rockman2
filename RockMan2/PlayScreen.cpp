@@ -30,6 +30,7 @@ void CPlayScreen::update(CGameTime* gametime)
 		_screenPosition.x = _rockman->_position.x;
 		_screenPosition = _cameraPath->calculatePointOnPathWith(_screenPosition);
 	}
+	
 	_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2 ));
 }
 
@@ -37,6 +38,15 @@ void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
 {
 	graphic->beginDraw(_camera);	
 	renderBackground(graphic, _camera->getViewport());
+	vector<CGameObject*>* objectInViewPort = new vector<CGameObject*>();
+	_quadNodeCollision.getObjectInVP(_camera->getViewport(), objectInViewPort);
+
+	for (int i = 0; i < objectInViewPort->size(); i++)
+	{
+		(*objectInViewPort)[i]->render(gametime, graphic);
+	}
+
+
 	_rockman->render(gametime, graphic);
 	graphic->endDraw();
 }
@@ -162,6 +172,16 @@ void CPlayScreen::loadMap()
 				// Lọc lấy danh sách các điểm rơi
 				fallingPoints.push_back(obj->_position);
 				break;
+			case ID_ROCK:
+				obj = new CRock();
+				obj->_id = objID;
+				obj->_idType = typeID;
+				obj->_position = Vector2((float)posX, (float)posY);
+				obj->_size = Vector2((float)width, (float)height);
+				obj->init();
+				/*obj->SetCollideRegion(posXCollide, posYCollide, widthCollide, heightCollide);*/
+				objects.insert(pair<int, CGameObject*>(objID, obj));
+
 			default:
 				break;
 			}
