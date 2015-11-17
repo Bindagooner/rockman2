@@ -17,18 +17,25 @@ CPlayScreen::~CPlayScreen()
 
 void CPlayScreen::updateInput(CInput* input)
 {
-
+	_rockman->updateInput(input);
 }
 
 void CPlayScreen::update(CGameTime* gametime)
 {
+	_rockman->update(gametime);
 
+	//Kiểm tra và dời khung màn hình
+	if (_cameraPath->isHorizontalLine())
+	{
+		_screenPosition.x = _rockman->_position.x;
+		_screenPosition = _cameraPath->calculatePointOnPathWith(_screenPosition);
+	}
+	_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2 ));
 }
 
 void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
 {
-	graphic->beginDraw(_camera);
-
+	graphic->beginDraw(_camera);	
 	renderBackground(graphic, _camera->getViewport());
 	_rockman->render(gametime, graphic);
 	graphic->endDraw();
@@ -156,7 +163,7 @@ void CPlayScreen::loadMap()
 				fallingPoints.push_back(obj->_position);
 				break;
 			default:
-				return;
+				break;
 			}
 		}
 		getline(fs, line);					// Bỏ qua dòng "#Objects_End"

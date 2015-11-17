@@ -24,7 +24,14 @@ void CRockman::update(CGameTime* gametime)
 
 void CRockman::updateInput(CInput* input)
 {
-
+	if (input->isKeyPress(DIK_RIGHT))
+	{
+		_position.x += 5;
+	}
+	else if (input->isKeyPress(DIK_LEFT))
+	{
+		_position.x -= 5;
+	}
 }
 
 void CRockman::render(CGameTime* gametime, CGraphic* graphic)
