@@ -75,6 +75,8 @@ typedef RECT					Rect;
 // ID TYPE SPRITE
 // ID ROCK MAN
 #define	ID_ROCKMAN_STAND 100
+#define	ID_ROCKMAN_RUN	 101
+#define	ID_ROCKMAN_JUMP  102
 
 // OTHER
 #define ID_FALLING_POINT 341

@@ -107,7 +107,7 @@ public:
 
 	CSprite _sprite; // sprite giữ hình đối tượng
 
-	int _statusSprite; // trạng thái đối tượng
+	int _spriteStatus; // trạng thái đối tượng
 };
 
 #endif //_COBJECT_H_
