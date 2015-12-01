@@ -77,6 +77,7 @@ typedef RECT					Rect;
 #define	ID_ROCKMAN_STAND 100
 #define	ID_ROCKMAN_RUN	 101
 #define	ID_ROCKMAN_JUMP  102
+#define ID_ROCKMAN_STAND_FIRE 103
 
 // OTHER
 #define ID_FALLING_POINT 341

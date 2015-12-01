@@ -49,6 +49,29 @@ CDynamicObject::CDynamicObject() : CGameObject()
 	_dam = 0;
 }
 
+float CDynamicObject::checkCollision(CGameObject* gameObj, float& normalX, float& normalY, float deltatime)
+{
+	float timeCollision = deltatime;
+	Box mybox = this->getBox();
+	Box objbox = gameObj->getBox();
+
+	mybox.vX -= objbox.vX;
+	mybox.vY -= objbox.vY;
+	objbox.vX = 0.0f;
+	objbox.vY = 0.0f;
+
+	Box sweptbroadphasebox = CCollision::getSweptBroadphaseBox(mybox, deltatime);
+
+	if (CCollision::checkBeforeAABB(sweptbroadphasebox, objbox))
+	{
+		timeCollision = CCollision::SweepAABB(mybox, objbox, normalX, normalY, deltatime);
+		if (timeCollision = deltatime && CCollision::checkBeforeAABB(mybox, objbox))
+			return 0;
+	}
+
+	return timeCollision;
+}
+
 
 CDynamicObject::~CDynamicObject()
 {

@@ -2,12 +2,16 @@
 
 #include "GameObject.h"
 #include "Input.h"
+
+#define GRAVITY -3.0 / 10
+
 class CRockman : public CDynamicObject
 {
 private:
 	enum Status
 	{
 		Stand,
+		Stand_fire,
 		Run,
 		Jump,
 	};

@@ -246,9 +246,9 @@ void CPlayScreen::loadMap()
 		getline(fs, line);	// Bỏ qua dòng #Camera_Path_Point_End
 
 		// Dựng cảnh màn chơi
-		_sceneInfo.buildScene(fallingPoints, cameraPaths);
+		/*_sceneInfo.buildScene(fallingPoints, cameraPaths);
 
-		findScene(0);
+		findScene(0);*/
 	}
 
 #pragma endregion

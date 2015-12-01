@@ -107,6 +107,8 @@ public:
 
 	CSprite _sprite; // sprite giữ hình đối tượng
 
+	float checkCollision(CGameObject*, float& normalX, float& normalY, float deltatime);
+
 	int _spriteStatus; // trạng thái đối tượng
 };
 
