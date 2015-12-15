@@ -123,6 +123,15 @@
     <ClCompile Include="Rock.cpp">
       <Filter>GameObject\Static</Filter>
     </ClCompile>
+    <ClCompile Include="RockmanBullet.cpp">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionInfo.cpp">
+      <Filter>Framework\Collision</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameApp.h" />
@@ -194,6 +203,15 @@
     </ClInclude>
     <ClInclude Include="Rock.h">
       <Filter>GameObject\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="RockmanBullet.h">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h">
+      <Filter>GameObject\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionInfo.h">
+      <Filter>Framework\Collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

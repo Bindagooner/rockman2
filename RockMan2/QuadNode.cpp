@@ -55,7 +55,7 @@ void CQuadNode::getObjectInVP(RECT viewport, vector<CGameObject*>* listObject)
 
 	Box viewportbox = { (float)viewport.left, (float)viewport.top, (float)abs(viewport.right - viewport.left), (float)abs(viewport.top - viewport.bottom), 0.0f, 0.0f };
 
-	if (nodebox.isIntersect(viewportbox))
+	if (nodebox.intersecWith(viewportbox))
 	{
 		// Nếu không có các node con, thêm các đối tượng hiện tại mà node đang giữ vào listObjects
 		if (!this->_pLTNode && !this->_pRTNode && !this->_pLBNode && !this->_pRBNode)

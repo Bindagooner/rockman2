@@ -1,6 +1,16 @@
 ﻿#include "Collision.h"
 
 
+Box::Box(Rect rectangle)
+{
+	x = rectangle.left;
+	y = rectangle.top;
+	width = abs(rectangle.right - rectangle.left);
+	height = abs(rectangle.top - rectangle.bottom);
+	vX = 0.0f;
+	vY = 0.0f;
+}
+
 CCollision::CCollision()
 {
 }
@@ -10,138 +20,229 @@ CCollision::~CCollision()
 {
 }
 
-Box CCollision::getSweptBroadphaseBox(Box b, float t)
+bool Box::intersecWith(Box box, bool acceptDiffirent)
 {
-	Box broadphaseBox;
-	broadphaseBox.x = b.vX > 0 ? b.x : b.x + b.vX * t;
-	broadphaseBox.y = b.vY < 0 ? b.y : b.y + b.vY * t;
-	broadphaseBox.width = b.vX > 0 ? b.vX * t + b.width : b.width - b.vX * t;
-	broadphaseBox.height = b.vY > 0 ? b.vY * t + b.height : b.height - b.vY * t;
-	//broadphaseBox.vX = b.vX;
-	//broadphaseBox.vY = b.vY;
-
-	return broadphaseBox;
-
-	/*Box re;
-	re.x = b.vX > 0 ? b.x : b.x - abs(b.vX)*t;
-	re.y = b.vY > 0 ? b.y + abs(b.vY)*t : b.y;
-	re.vX = b.vX;
-	re.vY = b.vY;
-	re.width = b.width + abs(b.vX)*t;
-	re.height = b.height + abs(b.vY)*t;
-
-	return re;*/
+	if (!acceptDiffirent)
+	{
+		return !(x > box.x + box.width || y < box.y - box.height || x + width<box.x || y - height>box.y);
+	}
+	else
+	{
+		return !(floor(x) > floor(box.x + box.width) || floor(y) < floor(box.y - box.height) || floor(x + width) < floor(box.x) || floor(y - height) > floor(box.y));
+	}
 }
 
-bool CCollision::checkBeforeAABB(Box b1, Box b2)
+Box CCollision::GetSweptBox(Box box, float frameTime)
 {
-	return !(b1.x + b1.width < b2.x || b1.x > b2.x + b2.width || b1.y < b2.y - b2.height || b1.y - b1.height > b2.y);
+	Box re;
+	re.x = box.vX > 0 ? box.x : box.x - abs(box.vX)*frameTime;
+	re.y = box.vY > 0 ? box.y + abs(box.vY)*frameTime : box.y;
+	re.vX = box.vX;
+	re.vY = box.vY;
+	re.width = box.width + abs(box.vX)*frameTime;
+	re.height = box.height + abs(box.vY)*frameTime;
+	return re;
 }
 
-float CCollision::SweepAABB(Box b1, Box b2, float& normalx, float& normaly, float timeFrame)
+bool CCollision::AABBCheck(Box box1, Box box2)
+{
+	return box1.intersecWith(box2, true);
+}
+
+float CCollision::SweepAABB(Box box1, Box box2, CDirection &normalX, CDirection &normalY, float frameTime)
 {
 	float xInvEntry, yInvEntry;
 	float xInvExit, yInvExit;
 
-	// Xác định khoảng cách bắt đầu và kết thúc va chạm theo hay chiều x, y.
-	if (b1.vX > 0.0f)
+	// Xác định các khoảng cách bắt đầu và kết thúc va chạm theo hai chiều x, y
+	if (box1.vX > 0.0f)
 	{
-		xInvEntry = b2.x - (b1.x + b1.width);
-		xInvExit = (b2.x + b2.width) - b1.x;
+		xInvEntry = box2.x - (box1.x + box1.width);
+		xInvExit = (box2.x + box2.width) - box1.x;
 	}
 	else
 	{
-		xInvEntry = (b2.x + b2.width) - b1.x;
-		xInvExit = b2.x - (b1.x + b1.width);
+		xInvEntry = (box2.x + box2.width) - box1.x;
+		xInvExit = box2.x - (box1.x + box1.width);
 	}
-
-	if (b1.vY > 0.0f)
+	if (box1.vY > 0.0f)
 	{
-		yInvEntry = (b2.y - b2.height) - b1.y;
-		yInvExit = b2.y - (b1.y - b1.height);
+		yInvEntry = (box2.y - box2.height) - box1.y;
+		yInvExit = box2.y - (box1.y - box1.height);
 	}
 	else
 	{
-		yInvEntry = b2.y - (b1.y - b1.height);
-		yInvExit = (b2.y - b2.height) - b1.y;
+		yInvEntry = box2.y - (box1.y - box1.height);
+		yInvExit = (box2.y - box2.height) - box1.y;
 	}
-
+	// Tính thời gian bắt đầu và kết thúc va chạm theo hai chiều x, y
 	float xEntry, xExit;
 	float yEntry, yExit;
 
-	// Tìm thời gian bắt đầu và kết thúc va chạm theo 2 trục x, y.
-	if (b1.vX == 0.0f)
+	if (box1.vX == 0.0f)
 	{
 		xEntry = -std::numeric_limits<float>::infinity();
 		xExit = std::numeric_limits<float>::infinity();
 	}
 	else
 	{
-		xEntry = xInvEntry / b1.vX;
-		xExit = xInvExit / b1.vX;
+		xEntry = xInvEntry / box1.vX;
+		xExit = xInvExit / box1.vX;
 	}
 
-	if (b1.vY == 0.0f)
+	if (box1.vY == 0.0f)
 	{
 		yEntry = -std::numeric_limits<float>::infinity();
 		yExit = std::numeric_limits<float>::infinity();
 	}
 	else
 	{
-		yEntry = yInvEntry / b1.vY;
-		yExit = yInvExit / b1.vY;
+		yEntry = yInvEntry / box1.vY;
+		yExit = yInvExit / box1.vY;
 	}
+	// Tìm ra khoảng thời gian bắt đầu và kết thúc va chạm tổng hợp
+	float entryTime, exitTime;
 
-	// Kết hợp thời gian bắt đầu và kết thúc va chạm theo 2 trục x, y
-	// Tìm thời gian bắt đầu và kết thúc va chạm tổng hợp.
-	float entryTime = __max(xEntry, yEntry);
-	float exitTime = __min(xExit, yExit);
-
-	// Khi không có va chạm trong frame này.
-	if (entryTime > exitTime || xEntry < 0.0f && yEntry < 0.0f || xEntry > timeFrame || yEntry > timeFrame)
+	entryTime = __max(xEntry, yEntry);
+	exitTime = __min(xExit, yExit);
+#pragma region Xét va chạm với các trường hợp còn lại
+	// Nếu không có va chạm trong frameTime này thì trả về false
+	if (entryTime > exitTime || xEntry<0.0f&&yEntry<0.0f || xEntry>frameTime || yEntry>frameTime)
 	{
-		normalx = 0.0f;
-		normaly = 0.0f;
-		return timeFrame;
+		// Mặc định không va chạm theo hai hướng
+		normalX = CDirection::NONE_DIRECT;
+		normalY = CDirection::NONE_DIRECT;
+
+		if (box1.intersecWith(box2))
+		{
+			// Nếu 2 box va chạm lẫn nhau thì có thể hai box này đã dính nhau
+			if (fabsf(box1.y - box1.height - box2.y) <= 2.0f
+				&& !(box1.x + box1.width <= box2.x || box1.x >= box2.x + box2.width))
+				normalY = CDirection::ON_DOWN;
+
+			else if (fabsf(box1.y - (box2.y - box2.height)) <= 2.0f
+				&& !(box1.x + box1.width <= box2.x || box1.x >= box2.x + box2.width))
+				normalY = CDirection::ON_UP;
+
+			else if (fabsf(box1.x + box1.width - box2.x) <= 2.0f
+				&& !(box1.y - box1.height >= box2.y || box1.y <= box2.y - box2.height))
+				normalX = CDirection::ON_RIGHT;
+
+			else if (fabsf(box1.x - (box2.x + box2.width)) <= 2.0f
+				&& !(box1.y - box1.height >= box2.y || box1.y <= box2.y - box2.height))
+				normalX = CDirection::ON_LEFT;
+
+			else if (!(box1.y - box1.height >= box2.y
+				|| box1.y <= box2.y - box2.height
+				|| box1.x + box1.width <= box2.x
+				|| box1.x >= box2.x + box2.width))
+				normalX = normalY = CDirection::INSIDE;
+		}
+		return 0;
 	}
-	else // Khi xảy ra va chạm.
+#pragma  endregion
+#pragma region Nếu có va chạm xảy ra
+	else
 	{
-		// Va chạm theo chiều x.
 		if (xEntry > yEntry)
 		{
-			// Va chạm từ trái qua phải.
-			if (b1.vX > 0.0f)
+			if (box1.vX > 0.0f) // Nếu va chạm từ trái sang phải
 			{
-				normalx = -1.0f;
-				normaly = 0.0f;
+				if (!(box1.y - box1.height >= box2.y || box1.y <= box2.y - box2.height))
+				{
+					normalX = CDirection::ON_RIGHT;
+					normalY = CDirection::NONE_DIRECT;
+				}
+				else
+				{
+					if (fabsf(box1.y - box1.height - box2.y) <= 2.0f)
+					{
+						normalX = CDirection::NONE_DIRECT;
+						normalY = CDirection::ON_DOWN;
+						entryTime = 0.0f;
+					}
+					else if (fabsf(box1.y - (box2.y - box2.height) <= 2.0f))
+					{
+						normalX = CDirection::NONE_DIRECT;
+						normalY = CDirection::ON_UP;
+						entryTime = 0.0f;
+					}
+				}
 			}
-			else // Va chạm từ phải qua trái.
+			else // Nếu va chạm từ phải sang trái
 			{
-				normalx = 1.0f;
-				normaly = 0.0f;
+				if (!(box1.y - box1.height >= box2.y || box1.y <= box2.y - box2.height))
+				{
+					normalX = CDirection::ON_LEFT;
+					normalY = CDirection::NONE_DIRECT;
+				}
+				else
+				{
+					if (fabsf(box1.y - box1.height - box2.y) <= 2.0f)
+					{
+						normalX = CDirection::NONE_DIRECT;
+						normalY = CDirection::ON_DOWN;
+						entryTime = 0.0f;
+					}
+					else if (fabsf(box1.y - (box2.y - box2.height)) <= 2.0f)
+					{
+						normalX = CDirection::NONE_DIRECT;
+						normalY = CDirection::ON_UP;
+						entryTime = 0.0f;
+					}
+				}
 			}
 		}
-		else // Va chạm theo chiều y.
+		else
 		{
-			// Va chạm từ dưới lên.
-			if (b1.vY > 0.0f)
+			if (box1.vY > 0.0f) // Nếu va chạm từ dưới lên
 			{
-				normalx = 0.0f;
-				normaly = -1.0f;
+				if (!(box1.x + box1.width <= box2.x || box1.x >= box2.x + box2.width))
+				{
+					normalY = CDirection::ON_UP;
+					normalX = CDirection::NONE_DIRECT;
+				}
+				else
+				{
+					if (fabsf(box1.x + box1.width - box2.x) <= 2.0f)
+					{
+						normalY = CDirection::NONE_DIRECT;
+						normalX = CDirection::ON_RIGHT;
+						entryTime = 0.0f;
+					}
+					else if (fabsf(box1.x - (box2.x + box2.width))<2.0f)
+					{
+						normalY = CDirection::NONE_DIRECT;
+						normalX = CDirection::ON_LEFT;
+						entryTime = 0.0f;
+					}
+				}
 			}
-			else // Va chạm từ trên xuống.
+			else // Nếu va chạm từ trên xuống
 			{
-				normalx = 0.0f;
-				normaly = 1.0f;
+				if (!(box1.x + box1.width <= box2.x || box1.x >= box2.x + box2.width))
+				{
+					normalY = CDirection::ON_DOWN;
+					normalX = CDirection::NONE_DIRECT;
+				}
+				else
+				{
+					if (fabsf(box1.x + box1.width - box2.x) <= 2.0f)
+					{
+						normalY = CDirection::NONE_DIRECT;
+						normalX = CDirection::ON_RIGHT;
+						entryTime = 0.0f;
+					}
+					else if (fabsf(box1.x - (box2.x + box2.width))<2.0f)
+					{
+						normalY = CDirection::NONE_DIRECT;
+						normalX = CDirection::ON_LEFT;
+						entryTime = 0.0f;
+					}
+				}
 			}
 		}
-
-		//if (entryTime < timeFrame && normalx = -1)
-		//{
-		//	
-		//}
-
 		return entryTime;
 	}
+#pragma endregion
 }
-

@@ -6,7 +6,7 @@ CPlayScreen::CPlayScreen() : CScreen()
 	_rockman = new CRockman();
 	_rockman->init();
 	loadMap();
-
+	_changingScreen = 0;
 	_typeID = ID_SCREEN_PLAY;
 }
 
@@ -17,21 +17,162 @@ CPlayScreen::~CPlayScreen()
 
 void CPlayScreen::updateInput(CInput* input)
 {
-	_rockman->updateInput(input);
+
 }
 
 void CPlayScreen::update(CGameTime* gametime)
 {
+	vector<CBullet*> bullets = _rockman->getBullets();
+
+	for (int i = 0; i < bullets.size(); i++)
+		_bulletsRockman.push_back(bullets[i]);
+
+
 	_rockman->update(gametime);
 
-	//Kiểm tra và dời khung màn hình
-	if (_cameraPath->isHorizontalLine())
+	for (int i = 0; i < _bulletsRockman.size(); i++)
+		_bulletsRockman[i]->update(gametime);
+	
+	if (_changingScreen == 0)
 	{
-		_screenPosition.x = _rockman->_position.x;
+		
+
+		//////////////////////////////////
+		//Kiểm tra và dời khung màn hình
+		//////////////////////////////////
+		if (_cameraPath->isHorizontalLine())
+		{
+			_screenPosition.x = _rockman->_position.x;
+			_screenPosition = _cameraPath->calculatePointOnPathWith(_screenPosition);
+		}
+		if (_cameraPath->canMoveLeft() || _cameraPath->canMoveRight())
+		{
+			/*if (_pointAfterDoor.x != 0 && _rockman._position.x > _pointDoor.x)
+			{
+			if (_rockman.GetBox()._x < _pointAfterDoor.x)
+			_screenPosition.x = _pointAfterDoor.x;
+			}
+			else
+			_screenPosition.x = _rockman._position.x;
+
+			if (_pointBeforeDoor.x != 0 && _screenPosition.x > _pointBeforeDoor.x&&_rockman._position.x<_pointDoor.x)
+			_screenPosition.x = _pointBeforeDoor.x;
+
+			_screenPosition = _cameraPath->CalculatePointOnPathWith(_screenPosition);*/
+
+			_screenPosition.x = _rockman->_position.x;
+			_screenPosition = _cameraPath->calculatePointOnPathWith(_screenPosition);
+		}
+
+		if (_cameraPath->canMoveUp() && _rockman->_position.y >= _screenPosition.y + SCREEN_HEIGHT / 2)
+		{
+			if (_rockman->_status == Status::Stair && (
+				_rockman->_position.y >= _cameraPath->getNextPoint().y && _cameraPath->isHorizontalLine()
+				|| _rockman->_position.y > __max(_cameraPath->getEndPoint().y, _cameraPath->getStartPoint().y) && _cameraPath->isVerticalLine()))
+			{
+				if (_cameraPath->isHorizontalLine())
+				{
+					if (_cameraPath->getEndPoint() == _screenPosition)
+					{
+						_newScreenPosition = _cameraPath->getNextPoint() + Vector2(0, SCREEN_HEIGHT / 2);
+					}
+					else if (_cameraPath->getStartPoint() == _screenPosition)
+					{
+						_newScreenPosition = _cameraPath->getPreviousPoint() + Vector2(0, SCREEN_HEIGHT / 2);
+					}
+				}
+				else	if (_cameraPath->getEndPoint().y > _cameraPath->getStartPoint().y)
+				{
+					float distance = abs(_cameraPath->getEndPoint().y - _cameraPath->getNextPoint().y);
+					_newScreenPosition = _cameraPath->getEndPoint() + Vector2(0, distance > SCREEN_HEIGHT ? SCREEN_HEIGHT / 2 : distance);
+				}
+				else
+				{
+					float distance = abs(_cameraPath->getPreviousPoint().y - _cameraPath->getStartPoint().y);
+					_newScreenPosition = _cameraPath->getStartPoint() + Vector2(0, distance > SCREEN_HEIGHT ? SCREEN_HEIGHT / 2 : distance);
+				}
+				/*_enemies.clear();
+				_bulletsEnemy.clear();
+				_bulletsRockman.clear();
+				_items.clear();
+				_rockman._canFire = true;*/
+
+				_changingScreen = 1;
+				_changeScreenDirection = CDirection::ON_UP;
+				_rockman->changeScreen(CDirection::ON_UP);
+			}
+		}
+		if (_cameraPath->canMoveDown() && _rockman->_position.y <= _screenPosition.y - SCREEN_HEIGHT / 2)
+		{
+			if (((_cameraPath->isHorizontalLine() && (_rockman->_position.y <= _cameraPath->getNextPoint().y || _rockman->_position.y <= _cameraPath->getPreviousPoint().y)))
+				|| _cameraPath->isVerticalLine() && _rockman->_position.y < __min(_cameraPath->getEndPoint().y, _cameraPath->getStartPoint().y))
+			{
+				if (_cameraPath->isHorizontalLine())
+				{
+					if (_cameraPath->getEndPoint() == _screenPosition)
+					{
+						_newScreenPosition = _cameraPath->getNextOfNextPoint() + Vector2(0, SCREEN_HEIGHT / 2);
+					}
+					else if (_cameraPath->getStartPoint() == _screenPosition)
+					{
+						_newScreenPosition = _cameraPath->getPrevOfPreviousPoint() + Vector2(0, SCREEN_HEIGHT / 2);
+					}
+				}
+				else
+				{
+					if (_cameraPath->getEndPoint().y > _cameraPath->getStartPoint().y)
+					{
+						float distance = abs(_cameraPath->getStartPoint().y - _cameraPath->getPreviousPoint().y);
+						if (abs(distance) < SCREEN_HEIGHT)
+							_newScreenPosition = _cameraPath->getPreviousPoint();
+						else
+							_newScreenPosition = _cameraPath->getStartPoint() - Vector2(0, SCREEN_HEIGHT / 2);
+					}
+					else
+					{
+						float distance = abs(_cameraPath->getNextPoint().y - _cameraPath->getEndPoint().y);
+						if (abs(distance) < SCREEN_HEIGHT)
+							_newScreenPosition = _cameraPath->getNextPoint();
+						else
+							_newScreenPosition = _cameraPath->getNextPoint() + Vector2(0, SCREEN_HEIGHT / 2);
+					}
+				}
+				_changingScreen = 1;
+
+				/*_enemies.clear();
+				_bulletsEnemy.clear();
+				_bulletsRockman.clear();
+				_items.clear();
+				_rockman._canFire = true;*/
+
+				_changeScreenDirection = CDirection::ON_DOWN;
+				_rockman->changeScreen(CDirection::ON_DOWN);
+			}
+		}
+		else
+		{
+			if (_rockman->_position.y <= _screenPosition.y - SCREEN_HEIGHT / 2)
+			{
+				/*_rockman.Attack(0, true);*/
+			}
+		}
+
+		_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2));
+
+		// Đảm bảo Rockman không chạy quá màn hình chiều ngang
+		if (_rockman->_position.x <= _camera->getCameraPosition().x + _rockman->getBox().width / 2)
+			_rockman->_position.x = _camera->getCameraPosition().x + _rockman->getBox().width / 2;
+		if (_rockman->_position.x >= _camera->getCameraPosition().x + SCREEN_WIDTH - _rockman->getBox().width / 2)
+			_rockman->_position.x = _camera->getCameraPosition().x + SCREEN_WIDTH - _rockman->getBox().width / 2;
+
+	}
+	else
+	{
+		changeScreen(_changeScreenDirection);
 		_screenPosition = _cameraPath->calculatePointOnPathWith(_screenPosition);
+		_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2));
 	}
 	
-	_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2 ));
 }
 
 void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
@@ -48,6 +189,10 @@ void CPlayScreen::render(CGameTime* gametime, CGraphic* graphic)
 
 
 	_rockman->render(gametime, graphic);
+
+	for (int i = 0; i < _bulletsRockman.size(); i++)
+		_bulletsRockman[i]->render(gametime, graphic);
+
 	graphic->endDraw();
 }
 
@@ -373,5 +518,49 @@ void CPlayScreen::findScene(unsigned int startIndex)
 
 		_screenPosition = pointOnPath;
 		_camera->setCamPosition(Vector2(_screenPosition.x - SCREEN_WIDTH / 2, _screenPosition.y + SCREEN_HEIGHT / 2));
+	}
+}
+
+void CPlayScreen::changeScreen(CDirection direction)
+{
+	if (_changingScreen == 1)
+	{
+		switch (direction)
+		{
+		case ON_UP:
+			_screenPosition.y += 10;
+			if (_screenPosition.y >= _newScreenPosition.y)
+			{
+				_changingScreen = 2;
+				_screenPosition.y = _newScreenPosition.y + 1;
+				_rockman->changeScreen(CDirection::NONE_DIRECT);
+			}
+			break;
+		case ON_DOWN:_screenPosition.y -= 10;
+			if (_screenPosition.y <= _newScreenPosition.y)
+			{
+				_changingScreen = 2;
+				_screenPosition.y = _newScreenPosition.y;
+				_rockman->changeScreen(CDirection::NONE_DIRECT);
+				if (_screenPosition != _cameraPath->getPaths()[_cameraPath->getPaths().size() - 1])
+					CInput::getInstance()->active();
+			}
+			break;
+		case ON_RIGHT:
+			_screenPosition.x += 5;
+			if (_screenPosition.x >= _newScreenPosition.x)
+			{
+				_changingScreen = 2;
+				_screenPosition.x = _newScreenPosition.x;
+				//_pointBeforeDoor = Vector2(0, 0);
+				if (_screenPosition != _cameraPath->getPaths()[_cameraPath->getPaths().size() - 1])
+					CInput::getInstance()->active();
+			}
+			break;
+		case ON_LEFT:
+			break;
+		case INSIDE:
+			break;
+		}
 	}
 }

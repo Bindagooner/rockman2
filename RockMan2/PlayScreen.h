@@ -29,6 +29,8 @@ private:
 
 	void findScene(unsigned int startIndex);
 
+	void changeScreen(CDirection direction);
+
 	CQuadNode	_quadNodeCollision;			// Cây tứ phân lưu các đối tượng va chạm trên màn hình
 	CSceneInfo              _sceneInfo;
 	vector<vector<int>>		_tileMatrix;	// Ma trận lưu các tile background
@@ -37,10 +39,15 @@ private:
 	int						_totalTile;		// Tổng số tile được cắt
 	CTexture _tteBackground; // đối tượng nắm giữ ảnh nền
 
-	Vector2		_screenPosition;
+	Vector2		_screenPosition, _newScreenPosition;
+	CDirection	_changeScreenDirection;
+
+	int			_changingScreen;			// Kiếm tra có đang chuyển frame màn hình hay không
 
 	CRockman* _rockman;
 	
+	vector<CBullet*>		_bulletsRockman;// Danh sách các đối tượng đạn của Rockman
+
 public:
 	void updateInput(CInput* input) override;
 	void update(CGameTime* gametime) override;

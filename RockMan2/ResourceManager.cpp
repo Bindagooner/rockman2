@@ -21,14 +21,21 @@ int CResourceManager::init(HWND hwnd)
 	
 #pragma region Add sound
 	//CResourceManager::_instance->addSound(123, 0, L"Resources/Sound/pathsoundname.mp3");
-
+	CResourceManager::_instance->addSound(ID_EFFECT_ROCKMAN_FIRE_BULLET_NORMAL, 0, L"Resources//SoundEffects//rockman_fire_bulet_normal.wav");
 #pragma endregion
 
 #pragma region Add Sprite
-	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_ROCKMAN_STAND, new CSprite(L"Resources//Sprites//Rockman//rockman_stand.png", 1, 2, 2, 600, D3DCOLOR_XRGB(0, 102, 102))));
-	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_ROCKMAN_RUN, new CSprite(L"Resources//Sprites//Rockman//rockman_run.png", 1, 3, 3, 100, D3DCOLOR_XRGB(0, 102, 102))));
-	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_ROCKMAN_JUMP, new CSprite(L"Resources//Sprites//Rockman//rockman_jump.png", 1, 1, 1, 600, D3DCOLOR_XRGB(0, 102, 102))));
-	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_ROCKMAN_STAND_FIRE, new CSprite(L"Resources//Sprites//Rockman//rockman_stand_fire.png", 1, 1, 1, 0, D3DCOLOR_XRGB(0, 102, 102))));
+	//// ROCKMAN
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_STAND, new CSprite(L"Resources//Sprites//Rockman//rockman_stand.png", 1, 2, 2, 600, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_RUN, new CSprite(L"Resources//Sprites//Rockman//rockman_run.png", 1, 3, 3, 100, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_JUMP, new CSprite(L"Resources//Sprites//Rockman//rockman_jump.png", 1, 1, 1, 600, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_STAND_FIRE, new CSprite(L"Resources//Sprites//Rockman//rockman_stand_fire.png", 1, 1, 1, 0, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_STAIR, new CSprite(L"Resources//Sprites//Rockman//rockman_stair.png", 1, 2, 2, 120, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_STAIR_END, new CSprite(L"Resources//Sprites//Rockman//rockman_stair_end.png", 1, 1, 1, 1000, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_STAIR_FIRE, new CSprite(L"Resources//Sprites//Rockman//rockman_stair_fire.png", 1, 1, 1, 1000, D3DCOLOR_XRGB(0, 102, 102))));
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_ROCKMAN_RUN_FIRE, new CSprite(L"Resources//Sprites//Rockman//rockman_run_fire.png", 1, 3, 3, 1000, D3DCOLOR_XRGB(0, 102, 102))));
+	///// BULLET
+	CResourceManager::_instance->_listSprite.insert(pair<int, CSprite*>(ID_SPRITE_BULLET_ROCKMAN_NORMAL, new CSprite(L"Resources//Sprites//Rockman//bullet_rockman.png", 1, 1, 1, 0, D3DCOLOR_XRGB(0, 120, 255))));
 #pragma endregion
 
 	return 1;
